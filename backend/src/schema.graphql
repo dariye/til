@@ -1,0 +1,40 @@
+scalar DateTime
+
+type Query {
+  me: User
+  user(email: String!): User
+  feed: [Post!]!
+  filteredPosts(query: String): [Post!]!
+  post(id: ID!): Post
+}
+
+type Mutation {
+  createDraft(title: String!, userId: ID!, content: String): Post!
+  deletePost(id: ID!): Post
+  publish(id: ID!): Post
+  signup(email: String!, password: String!, name: String): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  posts: [Post!]!
+}
+
+type Post {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  published: Boolean!
+  public: Boolean!
+  title: String!
+  content: String
+  author: User
+}

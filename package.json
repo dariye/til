@@ -1,0 +1,20 @@
+{
+  "name": "til",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "run-s install:*",
+    "install:backend": "yarn install --cwd backend",
+    "install:frontend": "yarn install --cwd frontend",
+    "dev": "run-p dev:*",
+    "dev:backend": "yarn --cwd backend dev",
+    "dev:frontend": "yarn --cwd frontend dev",
+    "test": "run-p test:*",
+    "test:frontend": "yarn --cwd frontend test"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "yarn-run-all": "^3.1.1"
+  }
+}

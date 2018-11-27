@@ -1,0 +1,19 @@
+# Misc
+.DS_Store
+
+# NPM
+node_modules
+package-lock.json
+yarn.lock
+
+# Prisma
+generated/
+
+# Next
+.next/
+
+# ENV variables
+.env
+
+# Logs
+*.log

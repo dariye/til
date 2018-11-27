@@ -1,0 +1,56 @@
+{
+  "name": "til-frontend",
+  "version": "1.0.0",
+  "author": "Paul Dariye <paul.dariye@gmail.com>",
+  "license": "ISC",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "test": "jest test",
+    "precommit": "lint-staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "apollo-boost": "^0.1.6",
+    "apollo-link-context": "^1.0.8",
+    "babel-eslint": "^10.0.1",
+    "cookie": "^0.3.1",
+    "graphql": "14.0.2",
+    "graphql-tag": "^2.10.0",
+    "isomorphic-unfetch": "^2.0.0",
+    "next": "^7.0.2",
+    "prop-types": "^15.6.1",
+    "react": "^16.6.3",
+    "react-apollo": "^2.1.4",
+    "react-dom": "^16.6.3"
+  },
+  "devDependencies": {
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.1",
+    "jest": "^23.6.0",
+    "prettier": "^1.15.2",
+    "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "^16.6.3"
+  }
+}
