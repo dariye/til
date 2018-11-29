@@ -22,7 +22,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn test
-  test:
+      - run: yarn coverage
 
 workflows:
   version: 2
