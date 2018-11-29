@@ -17,3 +17,6 @@ generated/
 
 # Logs
 *.log
+
+# Test coverage reports
+.coveralls.yml
