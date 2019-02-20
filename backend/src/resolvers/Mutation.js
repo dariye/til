@@ -35,8 +35,8 @@ const Mutation = {
       user
     };
   },
-  createDraft: async (parent, { title, content }, context) => {
-    const userId = getUserId(context);
+  createDraft: async (parent, { title, content, userId }, context) => {
+    // const userId = getUserId(context);
     return context.prisma.createPost({
       title,
       content,

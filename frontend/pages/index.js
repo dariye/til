@@ -1,20 +1,57 @@
 import React from "react";
 import cookie from "cookie";
-import { ApolloConsumer } from "react-apollo";
+import { Query } from "react-apollo";
+import gql from 'graphql-tag'
 
 import redirect from "../lib/redirect";
 import checkLoggedIn from "../lib/checkLoggedIn";
 
+
+
+const FEED_QUERY = gql`
+  query FeedQuery {
+    feed {
+      id
+      title
+      content
+      createdAt
+      author {
+        name
+      }
+    }
+  }
+`
+class Feed extends React.Component {
+  state = {
+
+  }
+  render() {
+    const  { feed } = this.props
+    return (
+      <div>
+        <ul>
+          {
+            feed.map((feedItem) => {
+              return <li key={feedItem.id}>{feedItem.title}</li>
+            } )
+          }
+        </ul>
+      </div>
+    )
+  }
+}
+
 export default class Index extends React.Component {
   static async getInitialProps(context, apolloClient) {
-    const { loggedInUser } = await checkLoggedIn(context.apolloClient);
+    //TODO: authenticate user
+    // const { loggedInUser } = await checkLoggedIn(context.apolloClient);
 
-    if (!loggedInUser.user) {
+    // if (!loggedInUser.user) {
       // If not signed in, send them somewhere more useful
-      redirect(context, "/signin");
-    }
+      // redirect(context, "/signin");
+    // }
 
-    return { loggedInUser };
+    return { loggedInUser: "test" };
   }
 
   signout = apolloClient => () => {
@@ -32,15 +69,26 @@ export default class Index extends React.Component {
 
   render() {
     return (
-      <ApolloConsumer>
-        {client => (
-          <div>
-            <p>TIL</p>
-            Hello {this.props.loggedInUser.user.name}!<br />
-            <button onClick={this.signout(client)}>Sign out</button>
-          </div>
-        )}
-      </ApolloConsumer>
+      <Query query={FEED_QUERY}>
+        {({ loading, data, error }) => {
+
+          if (error) {
+            console.log(error)
+          }
+
+          if (loading || !data) {
+            return null
+          }
+
+          return (
+            <div>
+              <p>TIL</p>
+              <Feed feed={data.feed}/>
+            </div>
+          )
+        }}
+      </Query>
+
     );
   }
 }
